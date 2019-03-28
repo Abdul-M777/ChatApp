@@ -1,5 +1,7 @@
 package com.example.chatapp.Model;
 
+// This is a model class that will be used for users
+// All users should have an id, username and imageURL.
 public class User {
 
     private String id;
@@ -13,6 +15,8 @@ public class User {
         this.imageURL = imageURL;
     }
 
+    // An empty constructor is needed to create a new instance.
+    // If i didn't make another contructor an empty constructor will be default.
     public User() {
     }
 

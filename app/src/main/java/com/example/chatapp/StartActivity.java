@@ -15,6 +15,8 @@ public class StartActivity extends AppCompatActivity {
 
     FirebaseUser firebaseUser;
 
+
+    // When the app starts the Onstart method will start too.
     @Override
     protected void onStart() {
         super.onStart();
