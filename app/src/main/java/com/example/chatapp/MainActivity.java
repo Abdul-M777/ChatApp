@@ -87,16 +87,24 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // TabLayout provides a horizontal layout to display tabs.
+        // We reference the tablayout that we have in our activity_main.
         TabLayout tabLayout = findViewById(R.id.tab_layout);
+        // The viewpager is the widget that allows the user to swipe left and right to see another page or screen.
+        // Here we reference the viewpager we have in activity_main.
         ViewPager viewPager = findViewById(R.id.view_pager);
 
+        // The viewPagerAdapter job is to supply views to the mainActivity.
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
 
+        // Here we add the fragments that we want to use.
         viewPagerAdapter.addFragment(new ChatsFragment(), "Chats");
         viewPagerAdapter.addFragment(new UsersFragment(), "Users");
 
+        // here we set the adapter that we have made earlier.
         viewPager.setAdapter(viewPagerAdapter);
 
+        // We link the tablayout and the viewpager.
         tabLayout.setupWithViewPager(viewPager);
 
     }
@@ -125,8 +133,10 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
 
+    //A fragment is usually used as part of an activity's user interface and contributes its own layout to the activity.
     class ViewPagerAdapter extends FragmentPagerAdapter {
 
+        // We make two arraylist one for fragments and another for titles.
         private ArrayList<Fragment> fragments;
         private ArrayList<String> titles;
 
