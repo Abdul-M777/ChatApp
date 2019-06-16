@@ -33,6 +33,8 @@ public class UsersFragment extends Fragment {
     private UserAdapter userAdapter;
     private List<User> mUsers;
 
+    // Here we show the list of names and the profile pictures in the users tab.
+    // We get the names and the pictures from the database.
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
