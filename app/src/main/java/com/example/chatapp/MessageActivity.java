@@ -32,12 +32,17 @@ public class MessageActivity extends AppCompatActivity {
 
     Intent intent;
 
+    // This activity will be used to display the messages.
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
+        // A primary toolbar within the activity that may display the activity title, application-level navigation affordances,
+        // and other interactive items.
+        // Set a Toolbar to act as the ActionBar for this Activity window.
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -48,11 +53,13 @@ public class MessageActivity extends AppCompatActivity {
             }
         });
 
+
         profile_image = findViewById(R.id.profile_image);
         username = findViewById(R.id.username);
 
         intent = getIntent();
 
+        // Retrieve extended data from the intent.
         String userid = intent.getStringExtra("userid");
 
         fuser = FirebaseAuth.getInstance().getCurrentUser();
@@ -67,6 +74,7 @@ public class MessageActivity extends AppCompatActivity {
                 if (user.getImageURL().equals("default")){
                     profile_image.setImageResource(R.mipmap.ic_launcher);
                 } else {
+                    // Glide is an Image Loader Library for Android developed by bumptech and is a library that is recommended by Google.
                     Glide.with(MessageActivity.this).load(user.getImageURL()).into(profile_image);
                 }
             }
