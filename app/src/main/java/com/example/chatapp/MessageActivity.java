@@ -74,10 +74,12 @@ public class MessageActivity extends AppCompatActivity {
         fuser = FirebaseAuth.getInstance().getCurrentUser();
 
 
+        // When we click on the send button, the following thing will happen.
         btn_send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String msg = text_send.getText().toString();
+                // if the message is not empty, the message will be sent. If the message is empty the message will not be sent.
                 if (!msg.equals("")) {
                     sendMessage(fuser.getUid(), userid, msg);
                 } else {
@@ -111,15 +113,21 @@ public class MessageActivity extends AppCompatActivity {
 
     }
 
+    // Here is the method that we use to send a message and what the message should include.
     private void sendMessage(String sender, String receiver, String message){
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
 
+        // We create a Hashmap and tells it what it should include.
+        // The hashmap shall include a sender, a receiver and a message.
+        // A Hashmap is hash table based implementation of Java's Map interface. A Map, as you might know, is a collection of key-value pairs.
+        // It maps keys to values.
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("sender", sender);
         hashMap.put("receiver", receiver);
         hashMap.put("message", message);
 
+        // We push these values in a child that is called "Chats" in the database.
         reference.child("Chats").push().setValue(hashMap);
 
     }
