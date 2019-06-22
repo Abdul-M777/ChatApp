@@ -29,6 +29,8 @@ import java.util.List;
 
 public class ChatsFragment extends Fragment {
 
+    // Usually, a fragment contributes a portion of UI to the host activity, which is embedded as a part of the activity's overall view hierarchy.
+
     private RecyclerView recyclerView;
 
     private UserAdapter userAdapter;
@@ -83,13 +85,18 @@ public class ChatsFragment extends Fragment {
     }
 
 
+    // readChats method allows the user to see and read the messages, in the ChatsFragment
     private void readChats(){
+
         mUsers = new ArrayList<>();
 
         reference = FirebaseDatabase.getInstance().getReference("Users");
 
+        // Classes implementing this interface can be used to receive events about data changes at a location.
+        // Attach the listener to a location user addValueEventListener(ValueEventListener).
         reference.addValueEventListener(new ValueEventListener() {
             @Override
+            // This method will be called with a snapshot of the data at this location. It will also be called each time that data changes.
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 mUsers.clear();
 
@@ -116,6 +123,8 @@ public class ChatsFragment extends Fragment {
                 recyclerView.setAdapter(userAdapter);
             }
 
+            // This method will be triggered in the event that this listener either failed at the server,
+            // or is removed as a result of the security and Firebase Database rules.
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
