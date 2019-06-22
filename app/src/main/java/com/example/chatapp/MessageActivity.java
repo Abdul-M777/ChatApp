@@ -73,7 +73,9 @@ public class MessageActivity extends AppCompatActivity {
         });
 
         recyclerView = findViewById(R.id.recycler_view);
+        // RecyclerView can perform several optimizations if it can know in advance that RecyclerView's size is not affected by the adapter contents.
         recyclerView.setHasFixedSize(true);
+
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
         linearLayoutManager.setStackFromEnd(true);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -150,14 +152,21 @@ public class MessageActivity extends AppCompatActivity {
 
     }
 
+    // This is the methode we use to read the messages.
     private void readMessages(final String myid, final String userid, final String imageurl){
+        // We create a new ArrayList.
         mChat = new ArrayList<>();
 
+        // We create a path in our firebase database the we call Chats.
         reference = FirebaseDatabase.getInstance().getReference("Chats");
+        // We add value in that path.
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                // First we clear the arrayList.
                 mChat.clear();
+                // we create a for loop and in that for loop we add chat in mChat arrayList.
+                // chat is the values we get from the Chat.class.
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()){
                     Chat chat = snapshot.getValue(Chat.class);
                     if (chat.getReceiver().equals(myid) && chat.getSender().equals(userid) ||
