@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.chatapp.Fragments.ChatsFragment;
+import com.example.chatapp.Fragments.ProfileFragment;
 import com.example.chatapp.Fragments.UsersFragment;
 import com.example.chatapp.Model.User;
 import com.google.firebase.auth.FirebaseAuth;
@@ -100,6 +101,8 @@ public class MainActivity extends AppCompatActivity {
         // Here we add the fragments that we want to use.
         viewPagerAdapter.addFragment(new ChatsFragment(), "Chats");
         viewPagerAdapter.addFragment(new UsersFragment(), "Users");
+        viewPagerAdapter.addFragment(new ProfileFragment(), "Profile");
+
 
         // here we set the adapter that we have made earlier.
         viewPager.setAdapter(viewPagerAdapter);
